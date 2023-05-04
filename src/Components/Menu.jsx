@@ -1,17 +1,35 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
+import {useState} from 'react'
+import {FaTimes, FaBars} from 'react-icons/fa'
+
 
 function Menu() {
+    const [show, setShow] = useState(false)
+    const handleShow = (e) => {
+        setShow(!show)
+    }
   return (
-    <nav className='w-full h-20 px-10 flex items-center justify-between'>
-        <div className='w-10 h-8 rounded text-purple-700 bg-white text-xl text-center italic'>HO</div>
-        <ul className='flex'>
-            <li className='text-lg text-white px-3 hover:text-orange-600'>Home</li>
-            <li className='text-lg text-white px-3 hover:text-orange-600'>About Us</li>
-            <li className='text-lg text-white px-3 hover:text-orange-600'>Donate</li>
-            <li className='text-lg text-white px-3 hover:text-orange-600'>Patner</li>
-            <li className='text-lg text-white px-3 hover:text-orange-600'>Contact Us</li>
-        </ul>
+    <>
+    <nav className='w-full h-20 px-10 flex items-center justify-between bg-transparent'>
+        <div className='w-10 h-10 font-bold rounded text-purple-700 bg-white text-2xl flex items-center justify-center italic'>HO</div>
+        <div className='hidden md:flex'>
+            <Link to='/' className='text-lg text-white font-sans first-line:font-semibold px-3 py-1 hover:text-yellow-400 hover:bg-white'>Home</Link>
+            <Link to='/about' className='text-lg font-sans font-semibold text-white px-3 py-1 hover:text-yellow-400 hover:bg-white'>About Us</Link>
+            <Link to='/form' className='text-lg text-white font-sans font-semibold px-3 py-1 hover:text-yellow-400 hover:bg-white'>Donate</Link>
+            <Link to='/patner' className='text-lg text-white font-sans font-semibold px-3 py-1 hover:text-yellow-400 hover:bg-white'>Patner</Link>
+            <Link to='/contact' className='text-lg text-white font-sans font-semibold px-3 py-1 hover:text-yellow-400 hover:bg-white'>Contact Us</Link>
+        </div>
+        <div className='block bg-white w-8 h-8 md:hidden'>{show ? <FaTimes className='w-8 h-8 bg-white text-gray-700' onClick={handleShow}/> : <FaBars className='w-8 h-8 font-bold text-gray-700' onClick={handleShow}/>}</div>   
     </nav>
+    <div className={show ? 'bg-white hover:text-yellow-400 font-sans z-10 absolute right-10' : 'hidden'}>
+        <Link to='/' className='block text-lg text-black px-3 py-1 hover:text-yellow-400 hover:bg-white' onClick={handleShow}>Home</Link>
+        <Link to='/about' className='block text-lg font-sans text-black px-3 py-1 hover:text-yellow-400 hover:bg-white' onClick={handleShow}>About Us</Link>
+        <Link to='/form' className='block text-lg text-black px-3 py-1 hover:text-yellow-400 hover:bg-white' onClick={handleShow}>Donate</Link>
+        <Link to='/patner' className='block text-lg text-black px-3 py-1 hover:text-yellow-400 hover:bg-white' onClick={handleShow}>Patner</Link>
+        <Link to='/contact' className='block text-lg text-black px-3 py-1 hover:text-yellow-400 hover:bg-white' onClick={handleShow}>Contact Us</Link>
+    </div>
+</>
   )
 }
 
