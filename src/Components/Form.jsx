@@ -43,7 +43,7 @@ function Form({state, setState}) {
     const handleSubmit = (e) => {
         e.preventDefault();
         if(valid){
-            setState({...state, name: '', email: '', phone: '', amount: '5000'})
+            setState({...state, name: '', email: '', phone: '', amount: ''})
         } else {
             return
         }
