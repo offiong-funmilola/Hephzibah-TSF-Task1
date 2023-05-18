@@ -3,9 +3,10 @@ import {useState } from 'react'
 import { usePaystackPayment } from 'react-paystack';
 import Modal from './Modal';
 import Menu from './Menu';
+import { useNavigate } from 'react-router-dom';
 
 function Form({state, setState}) {
-    
+    const navigate = useNavigate()
     const REACT_APP_KEY = process.env.REACT_APP_API_KEY
     const config = {
         reference: (new Date()).getTime().toString(),
@@ -22,14 +23,14 @@ function Form({state, setState}) {
         setTimeout(() => setIsModalOpen(false), 4000)
         setIsModalOpen(true)
         setSuccessMessage(`Thank you for the Donation ${state.name}`)
-        
+        setTimeout(()=> {navigate('/')}, 2000) 
       };
 
     const onClose = () => {
         setIsModalOpen(true)
         setSuccessMessage(`Unable to complete donation ${state.name}`)
+        setTimeout(()=> {navigate('/')}, 2000)
     };
-
 
     const handleBlur = (e) => {
         if(e.target.value === ''){
@@ -39,7 +40,7 @@ function Form({state, setState}) {
         } else {
             setValid(true)
         }
-    }
+    };
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -48,7 +49,7 @@ function Form({state, setState}) {
         } else {
             return
         }
-    }
+    };
 
     return (
         <div className='w-full h-screen bg-gray-300'>
