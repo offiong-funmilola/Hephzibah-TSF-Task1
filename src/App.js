@@ -1,19 +1,24 @@
-import Home from './Components/Home';
 import {useState} from 'react';
-
-
+import Home from './Components/Home';
+import Form from './Components/Form';
+import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
 
 function App() {
   const initialState = {
     name: '',
     email: '',
     phone: '',
-    amount: '5000'
+    amount: ''
   }
   const [state, setState]= useState(initialState);
   return (
       <>
-        <Home state={state} setState={setState}/>
+        <Router>
+          <Routes>
+            <Route path='/' element={<Home />} />
+            <Route path='/form' element={<Form state={state} setState={setState}/>} />
+          </Routes>
+        </Router>
       </>
   );
 }
